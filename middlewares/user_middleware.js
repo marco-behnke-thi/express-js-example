@@ -1,5 +1,5 @@
-var authMiddleware = require('./auth_middleware');
-var baseMiddleware = require('./base_middleware');
+const authMiddleware = require('./auth_middleware');
+const baseMiddleware = require('./base_middleware');
 
 exports.getUserById = [
   authMiddleware.isAuthenticated,
