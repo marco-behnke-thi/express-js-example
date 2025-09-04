@@ -27,17 +27,8 @@ exports.login = function(req, res, next) {
     
     res.redirect('/users/index');
   } catch (error) {
-    switch (error.error) {
-      case 'user_not_found':
-        req.session.loginError = 'User not found';
-        break;
-      case 'wrong_password':
-        req.session.loginError = 'Password wrong';
-        break;
-      case 'missing_credentials':
-      default:
-        req.session.loginError = '';
-        break;
+    if (error.error && error.error !== 'missing_credentials') {
+      req.session.loginErrorCode = error.error;
     }
     
     return res.redirect('/users/login');

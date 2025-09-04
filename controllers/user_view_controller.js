@@ -1,8 +1,25 @@
 exports.login = function(req, res, next) {
-  const errorMessage = req.session.loginError || '';
+  let errorMessage = '';
   
-  // Clear the error from session after retrieving it (flash message behavior)
-  delete req.session.loginError;
+  if (req.session.loginErrorCode) {
+    switch (req.session.loginErrorCode) {
+      case 'user_not_found':
+        errorMessage = 'User not found';
+        break;
+      case 'wrong_password':
+        errorMessage = 'Password wrong';
+        break;
+      case 'system_error':
+        errorMessage = 'System error, please try again';
+        break;
+      default:
+        errorMessage = 'Login failed';
+        break;
+    }
+    
+    // Clear the error code from session after retrieving it (flash message behavior)
+    delete req.session.loginErrorCode;
+  }
   
   res.render('user/login', { title: 'Login', error: errorMessage });
 };
