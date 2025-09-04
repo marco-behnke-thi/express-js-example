@@ -1,11 +1,8 @@
 exports.login = function(req, res, next) {
-  let errorMessage = '';
+  const errorMessage = req.session.loginError || '';
   
-  if (req.query.error === 'user_not_found') {
-    errorMessage = 'User not found';
-  } else if (req.query.error === 'wrong_password') {
-    errorMessage = 'Password wrong';
-  }
+  // Clear the error from session after retrieving it (flash message behavior)
+  delete req.session.loginError;
   
   res.render('user/login', { title: 'Login', error: errorMessage });
 };

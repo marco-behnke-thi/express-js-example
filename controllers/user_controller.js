@@ -27,24 +27,20 @@ exports.login = function(req, res, next) {
     
     res.redirect('/users/index');
   } catch (error) {
-    let errorParam;
-    
     switch (error.error) {
-      case 'missing_credentials':
-        errorParam = '';
-        break;
       case 'user_not_found':
-        errorParam = '?error=user_not_found';
+        req.session.loginError = 'User not found';
         break;
       case 'wrong_password':
-        errorParam = '?error=wrong_password';
+        req.session.loginError = 'Password wrong';
         break;
+      case 'missing_credentials':
       default:
-        errorParam = '';
+        req.session.loginError = '';
         break;
     }
     
-    return res.redirect('/users/login' + errorParam);
+    return res.redirect('/users/login');
   }
 };
 
