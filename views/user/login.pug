@@ -2,6 +2,8 @@ extends ../layout
 
 block content
   h1= title
+  if error
+    div(style='color: red; margin-bottom: 10px;')= error
   form(method='POST', action='/users/api/login')
     div
       label(for='username') Username:

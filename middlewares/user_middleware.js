@@ -2,7 +2,7 @@ const authMiddleware = require('./auth_middleware');
 const baseMiddleware = require('./base_middleware');
 
 exports.getUserById = [
-  authMiddleware.isAuthenticated,
+  authMiddleware.isAdmin,
   baseMiddleware.param('id').isInt
 ];
 
