@@ -1,0 +1,42 @@
+{
+  "common": {
+    "welcome": "Welcome",
+    "login": "Login",
+    "logout": "Logout",
+    "username": "Username",
+    "password": "Password",
+    "submit": "Submit",
+    "error": "Error"
+  },
+  "navigation": {
+    "home": "Home",
+    "dashboard": "Dashboard"
+  },
+  "auth": {
+    "login_title": "Login",
+    "welcome_message": "Welcome, {{username}}!",
+    "logged_in_success": "You are successfully logged in.",
+    "user_not_found": "User not found",
+    "wrong_password": "Password wrong",
+    "system_error": "System error, please try again",
+    "login_failed": "Login failed"
+  },
+  "session": {
+    "session_info": "Session Information",
+    "user_id": "User ID",
+    "username": "Username",
+    "admin_status": "Admin Status",
+    "login_status": "Login Status",
+    "login_time": "Login Time",
+    "logged_in": "Logged In",
+    "not_logged_in": "Not Logged In",
+    "yes": "Yes",
+    "no": "No",
+    "na": "N/A"
+  },
+  "pages": {
+    "home_title": "Express",
+    "home_welcome": "Welcome to {{title}}",
+    "user_dashboard": "User Dashboard"
+  }
+}

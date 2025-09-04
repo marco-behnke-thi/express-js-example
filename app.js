@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
 const { Liquid } = require('liquidjs');
+const i18nMiddleware = require('./middlewares/i18n_middleware');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -15,6 +16,15 @@ var app = express();
 const engine = new Liquid({
   root: path.join(__dirname, 'views'),
   extname: '.liquid'
+});
+
+// Register custom i18n filter
+engine.registerFilter('t', function(key, params = {}) {
+  const req = this.context.environments.req;
+  if (req && req.t) {
+    return req.t(key, params);
+  }
+  return key; // fallback
 });
 
 app.engine('liquid', engine.express());
@@ -32,6 +42,9 @@ app.use(session({
   cookie: { secure: false, maxAge: 24 * 60 * 60 * 1000 } // 24 hours
 }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Add i18n middleware
+app.use(i18nMiddleware.setLocale);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

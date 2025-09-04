@@ -1,18 +1,18 @@
 {% layout "../layout" %}
 {% block content %}
-  <h1>Welcome, {{ username }}!</h1>
-  <p>You are successfully logged in.</p>
+  <h1>{{ welcomeMessage }}</h1>
+  <p>{{ 'auth.logged_in_success' | t }}</p>
 
-  <h2>Session Information</h2>
+  <h2>{{ 'session.session_info' | t }}</h2>
   <div style="background: #f5f5f5; padding: 15px; margin: 10px 0; border-radius: 5px;">
-    <p><strong>User ID:</strong> {{ user.id | default: 'N/A' }}</p>
-    <p><strong>Username:</strong> {{ user.username | default: 'N/A' }}</p>
-    <p><strong>Admin Status:</strong> {% if user.isAdmin %}Yes{% else %}No{% endif %}</p>
-    <p><strong>Login Status:</strong> {% if user.loggedIn %}Logged In{% else %}Not Logged In{% endif %}</p>
-    <p><strong>Login Time:</strong> {{ user.loginTime | default: 'N/A' }}</p>
+    <p><strong>{{ 'session.user_id' | t }}:</strong> {% if user.id %}{{ user.id }}{% else %}{{ 'session.na' | t }}{% endif %}</p>
+    <p><strong>{{ 'session.username' | t }}:</strong> {% if user.username %}{{ user.username }}{% else %}{{ 'session.na' | t }}{% endif %}</p>
+    <p><strong>{{ 'session.admin_status' | t }}:</strong> {% if user.isAdmin %}{{ 'session.yes' | t }}{% else %}{{ 'session.no' | t }}{% endif %}</p>
+    <p><strong>{{ 'session.login_status' | t }}:</strong> {% if user.loggedIn %}{{ 'session.logged_in' | t }}{% else %}{{ 'session.not_logged_in' | t }}{% endif %}</p>
+    <p><strong>{{ 'session.login_time' | t }}:</strong> {% if user.loginTime %}{{ user.loginTime }}{% else %}{{ 'session.na' | t }}{% endif %}</p>
   </div>
 
   <form method="POST" action="/users/api/logout">
-    <button type="submit">Logout</button>
+    <button type="submit">{{ 'common.logout' | t }}</button>
   </form>
 {% endblock %}

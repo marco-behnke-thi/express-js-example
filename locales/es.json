@@ -1,0 +1,42 @@
+{
+  "common": {
+    "welcome": "Bienvenido",
+    "login": "Iniciar sesión",
+    "logout": "Cerrar sesión",
+    "username": "Nombre de usuario",
+    "password": "Contraseña",
+    "submit": "Enviar",
+    "error": "Error"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "dashboard": "Panel"
+  },
+  "auth": {
+    "login_title": "Iniciar sesión",
+    "welcome_message": "¡Bienvenido, {{username}}!",
+    "logged_in_success": "Has iniciado sesión exitosamente.",
+    "user_not_found": "Usuario no encontrado",
+    "wrong_password": "Contraseña incorrecta",
+    "system_error": "Error del sistema, por favor inténtelo de nuevo",
+    "login_failed": "Error al iniciar sesión"
+  },
+  "session": {
+    "session_info": "Información de la sesión",
+    "user_id": "ID de usuario",
+    "username": "Nombre de usuario",
+    "admin_status": "Estado de administrador",
+    "login_status": "Estado de inicio de sesión",
+    "login_time": "Hora de inicio de sesión",
+    "logged_in": "Conectado",
+    "not_logged_in": "No conectado",
+    "yes": "Sí",
+    "no": "No",
+    "na": "N/A"
+  },
+  "pages": {
+    "home_title": "Express",
+    "home_welcome": "Bienvenido a {{title}}",
+    "user_dashboard": "Panel de usuario"
+  }
+}

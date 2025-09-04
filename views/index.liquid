@@ -1,8 +1,8 @@
 {% layout "layout" %}
 {% block content %}
   <h1>{{ title }}</h1>
-  <p>Welcome to {{ title }}</p>
+  <p>{{ welcomeMessage }}</p>
   <p>
-    <a href="/users/login">Login</a>
+    <a href="/users/login">{{ 'common.login' | t }}</a>
   </p>
 {% endblock %}

@@ -4,16 +4,16 @@ exports.login = function(req, res, next) {
   if (req.session.loginErrorCode) {
     switch (req.session.loginErrorCode) {
       case 'user_not_found':
-        errorMessage = 'User not found';
+        errorMessage = req.t('auth.user_not_found');
         break;
       case 'wrong_password':
-        errorMessage = 'Password wrong';
+        errorMessage = req.t('auth.wrong_password');
         break;
       case 'system_error':
-        errorMessage = 'System error, please try again';
+        errorMessage = req.t('auth.system_error');
         break;
       default:
-        errorMessage = 'Login failed';
+        errorMessage = req.t('auth.login_failed');
         break;
     }
     
@@ -21,13 +21,15 @@ exports.login = function(req, res, next) {
     delete req.session.loginErrorCode;
   }
   
-  res.render('user/login', { title: 'Login', error: errorMessage });
+  res.render('user/login', { title: req.t('auth.login_title'), error: errorMessage });
 };
 
 exports.index = function(req, res, next) {
+  const username = req.session.username || 'User';
   res.render('user/index', { 
-    title: 'User Dashboard', 
-    username: req.session.username || 'User',
+    title: req.t('pages.user_dashboard'), 
+    username: username,
+    welcomeMessage: req.t('auth.welcome_message', { username: username }),
     user: req.session.user || {}
   });
 };

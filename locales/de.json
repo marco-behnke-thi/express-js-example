@@ -1,0 +1,42 @@
+{
+  "common": {
+    "welcome": "Willkommen",
+    "login": "Anmelden",
+    "logout": "Abmelden",
+    "username": "Benutzername",
+    "password": "Passwort",
+    "submit": "Absenden",
+    "error": "Fehler"
+  },
+  "navigation": {
+    "home": "Startseite",
+    "dashboard": "Dashboard"
+  },
+  "auth": {
+    "login_title": "Anmelden",
+    "welcome_message": "Willkommen, {{username}}!",
+    "logged_in_success": "Sie sind erfolgreich angemeldet.",
+    "user_not_found": "Benutzer nicht gefunden",
+    "wrong_password": "Falsches Passwort",
+    "system_error": "Systemfehler, bitte versuchen Sie es erneut",
+    "login_failed": "Anmeldung fehlgeschlagen"
+  },
+  "session": {
+    "session_info": "Sitzungsinformationen",
+    "user_id": "Benutzer-ID",
+    "username": "Benutzername",
+    "admin_status": "Administrator-Status",
+    "login_status": "Anmeldestatus",
+    "login_time": "Anmeldezeit",
+    "logged_in": "Angemeldet",
+    "not_logged_in": "Nicht angemeldet",
+    "yes": "Ja",
+    "no": "Nein",
+    "na": "N/V"
+  },
+  "pages": {
+    "home_title": "Express",
+    "home_welcome": "Willkommen bei {{title}}",
+    "user_dashboard": "Benutzer-Dashboard"
+  }
+}
