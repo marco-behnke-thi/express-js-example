@@ -18,9 +18,7 @@ exports.login = function(req, res, next) {
   const { username, password } = req.body;
   
   if (!username || !password) {
-    return res.status(400).json({ 
-      error: 'Username and password are required' 
-    });
+    return res.redirect('/users/login');
   }
   
   // Accept any username/password for now
@@ -30,29 +28,22 @@ exports.login = function(req, res, next) {
     loggedIn: true,
     loginTime: new Date().toISOString()
   };
+  req.session.username = username;
   
-  res.json({ 
-    message: 'Login successful',
-    user: req.session.user
-  });
+  res.redirect('/users/index');
 };
 
 exports.logout = function(req, res, next) {
   if (!req.session.user) {
-    return res.status(400).json({ 
-      error: 'Not logged in' 
-    });
+    return res.redirect('/users/login');
   }
   
   req.session.destroy(function(err) {
     if (err) {
-      return res.status(500).json({ 
-        error: 'Failed to logout' 
-      });
+      return res.redirect('/users/login');
     }
     
-    res.json({ 
-      message: 'Logout successful' 
-    });
+    res.redirect('/users/login');
   });
 };
+
