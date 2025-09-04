@@ -2,7 +2,7 @@
 {% block content %}
   <h1>{{ 'auth.login_title' | t }}</h1>
   {% if error %}
-    <div style="color: red; margin-bottom: 10px;">{{ error }}</div>
+    <div style="color: red; margin-bottom: 10px;">{{ error | t }}</div>
   {% endif %}
   <form method="POST" action="/users/api/login">
     <div>

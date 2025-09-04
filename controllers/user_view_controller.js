@@ -1,22 +1,8 @@
 exports.login = function(req, res, next) {
   let errorMessage = '';
-  
+  const error = req.session.loginErrorCode || null;
   if (req.session.loginErrorCode) {
-    switch (req.session.loginErrorCode) {
-      case 'user_not_found':
-        errorMessage = req.t('auth.user_not_found');
-        break;
-      case 'wrong_password':
-        errorMessage = req.t('auth.wrong_password');
-        break;
-      case 'system_error':
-        errorMessage = req.t('auth.system_error');
-        break;
-      default:
-        errorMessage = req.t('auth.login_failed');
-        break;
-    }
-    
+    errorMessage = `auth.${req.session.loginErrorCode}`
     // Clear the error code from session after retrieving it (flash message behavior)
     delete req.session.loginErrorCode;
   }
