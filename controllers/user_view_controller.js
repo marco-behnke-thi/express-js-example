@@ -11,5 +11,9 @@ exports.login = function(req, res, next) {
 };
 
 exports.index = function(req, res, next) {
-  res.render('user/index', { title: 'User Dashboard', username: req.session.username || 'User' });
+  res.render('user/index', { 
+    title: 'User Dashboard', 
+    username: req.session.username || 'User',
+    user: req.session.user || {}
+  });
 };
