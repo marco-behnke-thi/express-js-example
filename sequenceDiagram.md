@@ -1,3 +1,4 @@
+´´´mermaid
 sequenceDiagram
 autonumber
 actor UI as UI (Player)
@@ -38,3 +39,4 @@ UI->>Q: GetAllianceMembers(allianceId)  (refresh)
 Q->>RM: SELECT members for allianceId
 RM-->>Q: updated AllianceMembersDto
 Q-->>UI: list includes new member
+´´´
