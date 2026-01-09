@@ -1,3 +1,4 @@
+```mermaid
 classDiagram
 direction LR
 
@@ -140,3 +141,4 @@ GetAllianceMembersHandler --> GetAllianceMembers
 GetAllianceMembersHandler --> ReadModelDB
 GetAllianceMembersHandler --> AllianceMembersDto
 AllianceMembersDto --> MemberDto
+```
