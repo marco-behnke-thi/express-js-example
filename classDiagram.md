@@ -2,67 +2,51 @@
 classDiagram
 direction LR
 
-%% =========================
-%% Domain Layer (Aggregates)
-%% =========================
-
-class Alliance <<AggregateRoot>> {
+class Alliance {
   +AllianceId id
-  +String name
-  +AllianceStatus status
+  +string name
+  +string status
   +int maxMembers
   +bool isOpen
   +canJoin(userId: UserId) bool
 }
 
-class User <<AggregateRoot>> {
+class User {
   +UserId id
-  +String displayName
-  +UserStatus status
+  +string displayName
+  +string status
 }
 
-class Membership <<AggregateRoot>> {
+class Membership {
   +MembershipId id
   +AllianceId allianceId
   +UserId userId
-  +MembershipStatus status
+  +string status
   +join()
   +leave()
 }
 
-%% =========================
-%% Commands (Write side)
-%% =========================
-
-class JoinAlliance <<Command>> {
+class JoinAlliance {
   +AllianceId allianceId
   +UserId userId
 }
 
-class LeaveAlliance <<Command>> {
+class LeaveAlliance {
   +AllianceId allianceId
   +UserId userId
 }
 
-%% =========================
-%% Domain Events
-%% =========================
-
-class UserJoinedAlliance <<DomainEvent>> {
+class UserJoinedAlliance {
   +AllianceId allianceId
   +UserId userId
   +DateTime occurredAt
 }
 
-class UserLeftAlliance <<DomainEvent>> {
+class UserLeftAlliance {
   +AllianceId allianceId
   +UserId userId
   +DateTime occurredAt
 }
-
-%% =========================
-%% Application Layer
-%% =========================
 
 class JoinAllianceHandler {
   +handle(cmd: JoinAlliance)
@@ -81,46 +65,39 @@ class UserRepository {
 }
 
 class MembershipRepository {
-  +findByUser(userId: UserId) Membership?
-  +find(allianceId: AllianceId, userId: UserId) Membership?
+  +findByUser(userId: UserId) Membership
+  +find(allianceId: AllianceId, userId: UserId) Membership
   +save(m: Membership)
   +delete(m: Membership)
 }
 
-%% =========================
-%% Query Side (Read model)
-%% =========================
-
-class GetAllianceMembers <<Query>> {
+class GetAllianceMembers {
   +AllianceId allianceId
-}
-
-class AllianceMembersDto <<DTO>> {
-  +AllianceId allianceId
-  +String allianceName
-  +MemberDto[] members
-}
-
-class MemberDto <<DTO>> {
-  +UserId userId
-  +String displayName
-  +String role
 }
 
 class GetAllianceMembersHandler {
   +handle(q: GetAllianceMembers) AllianceMembersDto
 }
 
-class ReadModelDB <<ReadStore>> {
+class AllianceMembersDto {
+  +AllianceId allianceId
+  +string allianceName
+  +MemberDto[] members
+}
+
+class MemberDto {
+  +UserId userId
+  +string displayName
+  +string role
+}
+
+class ReadModelDB {
   +alliances_view
   +alliance_members_view
   +users_view
 }
 
-%% =========================
 %% Relationships
-%% =========================
-
 JoinAllianceHandler --> JoinAlliance
 LeaveAllianceHandler --> LeaveAlliance
 
@@ -131,8 +108,8 @@ JoinAllianceHandler --> MembershipRepository
 LeaveAllianceHandler --> MembershipRepository
 LeaveAllianceHandler --> AllianceRepository
 
-Membership --> Alliance : references (id)
-Membership --> User : references (id)
+Membership --> Alliance : references
+Membership --> User : references
 
 Membership ..> UserJoinedAlliance : emits
 Membership ..> UserLeftAlliance : emits
@@ -141,4 +118,5 @@ GetAllianceMembersHandler --> GetAllianceMembers
 GetAllianceMembersHandler --> ReadModelDB
 GetAllianceMembersHandler --> AllianceMembersDto
 AllianceMembersDto --> MemberDto
+
 ```
